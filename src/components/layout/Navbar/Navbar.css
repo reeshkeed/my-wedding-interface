@@ -1,0 +1,19 @@
+.navbar {
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+}
+
+.nav-link {
+  padding: 0 1rem;
+}
+
+.btn-rsvp {
+  border: 1px solid #000;
+  color: #fff !important;
+}
+
+.logo {
+  width: auto;
+  height: 2.5rem;
+}
