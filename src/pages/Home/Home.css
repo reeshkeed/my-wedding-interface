@@ -1,4 +1,13 @@
 #home {
   height: 100vh;
   background-image: url('../../assets/landing-bg.png');
+  color: #fff;
+}
+
+.our-name {
+  font-size: 5rem;
+}
+
+p {
+  font-size: 1.8rem;
 }
