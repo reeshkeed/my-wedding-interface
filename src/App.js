@@ -9,8 +9,8 @@ function App() {
       <Navbar />
 
       <Home />
-      <OurGallery />
       <WhenAndWhere />
+      <OurGallery />
     </div>
   );
 }
