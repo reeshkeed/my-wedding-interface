@@ -3,7 +3,6 @@ import {
   Stack,
   Flex,
   Box,
-  Heading,
   Text,
   Button,
   Image,
@@ -11,7 +10,10 @@ import {
   useColorModeValue,
   Link,
 } from '@chakra-ui/react';
+import { InfoOutlineIcon } from '@chakra-ui/icons';
+
 import GoogleMaps from '../../components/GoogleMaps';
+import Header from '../../components/Header';
 import MapsIcon from '../../assets/gmaps.svg';
 import WazeIcon from '../../assets/waze.svg';
 
@@ -35,7 +37,7 @@ export default function WhenAndWhere() {
     <Center
       id="when-and-where"
       maxW={'none'}
-      px={{ base: '1rem' }}
+      px={{ base: '1rem', md: '2rem', lg: '4rem', xl: '6rem', '2xl': '20rem' }}
       height={'100vh'}
     >
       <Stack
@@ -43,34 +45,10 @@ export default function WhenAndWhere() {
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
         direction={{ base: 'column', md: 'row' }}
+        width={'100%'}
       >
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-          <Heading
-            lineHeight={1.1}
-            fontWeight={600}
-            fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
-          >
-            <Text
-              as={'span'}
-              position={'relative'}
-              _after={{
-                content: "''",
-                width: 'full',
-                height: '30%',
-                position: 'absolute',
-                bottom: 1,
-                left: 0,
-                bg: 'teal.400',
-                zIndex: -1,
-              }}
-            >
-              When and
-            </Text>
-            <br />
-            <Text as={'span'} color={'teal.400'}>
-              Where
-            </Text>
-          </Heading>
+          <Header firstLine="When and" secondLine="Where" color="teal" />
 
           <Text color={'gray.500'}>
             Sunday, January 30, 2022 Four o'clock in the afternoon
@@ -106,7 +84,13 @@ export default function WhenAndWhere() {
               );
             })}
           </Stack>
+
+          <Text as="i" size={'xs'} color={'gray.300'} mt={'0.5rem !Important'}>
+            <InfoOutlineIcon mr={'0.4rem'} />
+            Tap the button above for direction.
+          </Text>
         </Stack>
+
         <Flex
           flex={1}
           justify={'center'}
@@ -116,7 +100,7 @@ export default function WhenAndWhere() {
         >
           <Blob
             w={'150%'}
-            h={'150%'}
+            h={{ base: '180%', md: '150%' }}
             position={'absolute'}
             top={'-20%'}
             left={0}
@@ -126,7 +110,7 @@ export default function WhenAndWhere() {
           <Box
             position={'relative'}
             height={'300px'}
-            rounded={'2xl'}
+            rounded={'xl'}
             boxShadow={'2xl'}
             width={'full'}
             overflow={'hidden'}

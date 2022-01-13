@@ -2,11 +2,7 @@ import { Center } from '@chakra-ui/react';
 
 function GoogleMaps() {
   return (
-    <Center
-      //   mx={{ base: '1rem', md: '5rem', lg: '5rem' }}
-      height={{ base: '20rem', md: '30rem' }}
-      minW={'none'}
-    >
+    <Center height={{ base: '20rem', md: '30rem' }} minW={'none'}>
       <iframe
         title="wedding-venue"
         width={'100%'}
