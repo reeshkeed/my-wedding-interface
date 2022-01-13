@@ -1,3 +1,4 @@
+import Footer from './components/layout/Footer/Footer';
 import Navbar from './components/layout/Navbar';
 import Home from './pages/Home';
 import OurGallery from './pages/OurGallery';
@@ -11,6 +12,8 @@ function App() {
       <Home />
       <WhenAndWhere />
       <OurGallery />
+
+      <Footer />
     </div>
   );
 }

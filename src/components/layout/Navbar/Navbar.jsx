@@ -19,8 +19,8 @@ import logo from '../../../assets/logo.png';
 import './Navbar.css';
 
 const NAVBAR_ITEMS = [
-  { name: 'WHEN & WHERE', link: 'when-and-where' },
-  { name: 'OUR GALLERY', link: 'our-gallery' },
+  { id: 0, name: 'WHEN & WHERE', link: 'when-and-where' },
+  { id: 1, name: 'OUR GALLERY', link: 'our-gallery' },
 ];
 
 export default function Navbar() {
@@ -39,10 +39,11 @@ export default function Navbar() {
     <Container
       py={{ base: '1rem', md: '2rem' }}
       px={{ base: '0.5rem', md: '3rem' }}
-      className={isScrolled ? 'scrolled' : ''}
+      bgGradient={isScrolled ? 'linear(to-r, teal.300, blue.400)' : ''}
       position={'fixed'}
       width={'100%'}
       maxW={'none'}
+      zIndex={'10'}
     >
       <Flex display={{ base: 'none', md: 'flex' }} width={'100%'}>
         <TabletUpNav />
@@ -92,7 +93,7 @@ function MobileNav() {
               </Box>
               {NAVBAR_ITEMS.map((item) => {
                 return (
-                  <Box pb={'0.4rem'}>
+                  <Box pb={'0.4rem'} key={item.id}>
                     <Link to={item.link} spy={true} smooth={true}>
                       {item.name}
                     </Link>
@@ -127,7 +128,13 @@ function TabletUpNav() {
 
         {NAVBAR_ITEMS.map((item) => {
           return (
-            <Link className="nav-link" to={item.link} spy={true} smooth={true}>
+            <Link
+              className="nav-link"
+              key={item.id}
+              to={item.link}
+              spy={true}
+              smooth={true}
+            >
               {item.name}
             </Link>
           );
