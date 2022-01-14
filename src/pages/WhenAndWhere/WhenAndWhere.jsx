@@ -51,11 +51,12 @@ export default function WhenAndWhere() {
           <Header firstLine="When and" secondLine="Where" color="teal" />
 
           <Text color={'gray.500'}>
-            Sunday, January 30, 2022 Four o'clock in the afternoon
+            Sunday, January 30, 2022 <br />
+            Four o'clock in the afternoon
           </Text>
           <Text color={'gray.500'}>
-            Mi Casita Private Pool Garden Resort (Brgy. San Vicente, Sta. Maria,
-            San Jose del Monte, Bulacan)
+            Mi Casita Private Pool Garden Resort <br />
+            (Brgy. San Vicente, Sta. Maria, San Jose del Monte, Bulacan)
           </Text>
 
           <Stack spacing={{ base: 4, sm: 6 }} direction={'row'}>

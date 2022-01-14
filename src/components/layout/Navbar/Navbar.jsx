@@ -17,6 +17,7 @@ import { Link } from 'react-scroll';
 import { useState, useEffect } from 'react';
 import logo from '../../../assets/logo.png';
 import './Navbar.css';
+import RsvpModal from '../../RsvpModal';
 
 const NAVBAR_ITEMS = [
   { id: 0, name: 'WHEN & WHERE', link: 'when-and-where' },
@@ -25,6 +26,7 @@ const NAVBAR_ITEMS = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,16 +48,18 @@ export default function Navbar() {
       zIndex={'10'}
     >
       <Flex display={{ base: 'none', md: 'flex' }} width={'100%'}>
-        <TabletUpNav />
+        <TabletUpNav onOpen={onOpen} />
       </Flex>
       <Flex display={{ base: 'flex', md: 'none' }} width={'100%'}>
-        <MobileNav />
+        <MobileNav onOpen={onOpen} />
       </Flex>
+
+      <RsvpModal isOpen={isOpen} onClose={onClose} />
     </Container>
   );
 }
 
-function MobileNav() {
+function MobileNav(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -73,7 +77,7 @@ function MobileNav() {
         <Image className="logo" src={logo} />
       </Link>
 
-      <ButtonRsvp />
+      <ButtonRsvp onOpen={props.onOpen} />
 
       <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
@@ -108,7 +112,7 @@ function MobileNav() {
   );
 }
 
-function TabletUpNav() {
+function TabletUpNav(props) {
   return (
     <Container
       justifyContent={'space-between'}
@@ -141,14 +145,14 @@ function TabletUpNav() {
         })}
       </Box>
 
-      <ButtonRsvp />
+      <ButtonRsvp onOpen={props.onOpen} />
     </Container>
   );
 }
 
-function ButtonRsvp() {
+function ButtonRsvp(props) {
   return (
-    <Button className="btn-rsvp" variant="outline">
+    <Button className="btn-rsvp" variant="outline" onClick={props.onOpen}>
       RSVP
     </Button>
   );
