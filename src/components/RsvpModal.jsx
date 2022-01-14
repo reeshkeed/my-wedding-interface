@@ -12,9 +12,19 @@ import {
   ModalCloseButton,
   Text,
   Stack,
-} from '@chakra-ui/react';
+  FormErrorMessage,
+} from "@chakra-ui/react";
 
-import { useRef } from 'react';
+import { Formik, Form, Field } from "formik";
+
+import { useRef } from "react";
+
+import { object, string } from "yup";
+
+const formSchema = object({
+  username: string().required().label("Username"),
+  code: string().min(4).max(4).required().label("Code"),
+});
 
 function RsvpModal(props) {
   const initialRef = useRef();
@@ -27,41 +37,85 @@ function RsvpModal(props) {
       isCentered
     >
       <ModalOverlay />
-      <ModalContent mx={'1rem'} overflow={'hidden'}>
-        <ModalHeader bg={'gray.50'}>Enter Code</ModalHeader>
+      <ModalContent mx={"1rem"} overflow={"hidden"}>
+        <ModalHeader bg={"gray.50"}>Enter Code</ModalHeader>
         <ModalCloseButton />
 
-        <ModalBody py={'1.5rem'}>
-          <Text mb={'1rem'}>
-            Kindly enter the 4 digit code we just sent you.
-          </Text>
+        <Formik
+          initialValues={{ username: "", code: "" }}
+          onSubmit={handleLogin}
+          validationSchema={formSchema}
+        >
+          {(props) => (
+            <Form>
+              <ModalBody py={"1.5rem"}>
+                <Text mb={"1rem"}>
+                  Kindly enter the 4 digit code we just sent you.
+                </Text>
 
-          <Stack direction={'column'} spacing={'3'}>
-            <FormControl id="username">
-              <FormLabel>Username</FormLabel>
-              <Input placeholder="Username" ref={initialRef} size="lg" />
-            </FormControl>
+                <Stack direction={"column"} spacing={"3"}>
+                  <Field name="username">
+                    {({ field, form }) => (
+                      <FormControl
+                        isInvalid={
+                          form.errors.username && form.touched.username
+                        }
+                      >
+                        <FormLabel htmlFor="username">Username</FormLabel>
+                        <Input
+                          {...field}
+                          id="username"
+                          placeholder="Username"
+                        />
+                        <FormErrorMessage>
+                          {form.errors.username}
+                        </FormErrorMessage>
+                      </FormControl>
+                    )}
+                  </Field>
 
-            <FormControl id="code">
-              <FormLabel>4 Digit Code</FormLabel>
-              <Input placeholder="4 Digit Code" size="lg" />
-            </FormControl>
-          </Stack>
-        </ModalBody>
+                  <Field name="code">
+                    {({ field, form }) => (
+                      <FormControl
+                        isInvalid={form.errors.code && form.touched.code}
+                      >
+                        <FormLabel htmlFor="code">Code</FormLabel>
+                        <Input {...field} id="code" placeholder="XXXX" />
+                        <FormErrorMessage>{form.errors.code}</FormErrorMessage>
+                      </FormControl>
+                    )}
+                  </Field>
+                </Stack>
+              </ModalBody>
 
-        <ModalFooter>
-          <Stack direction={'row'} spacing={'3'}>
-            <Button variant="ghost" onClick={props.onClose}>
-              Close
-            </Button>
-            <Button colorScheme="teal" mr={3}>
-              Enter
-            </Button>
-          </Stack>
-        </ModalFooter>
+              <ModalFooter>
+                <Stack direction={"row"} spacing={"3"}>
+                  <Button variant="ghost" onClick={props.onClose}>
+                    Close
+                  </Button>
+                  <Button
+                    colorScheme="teal"
+                    mr={3}
+                    type="submit"
+                    isLoading={props.isSubmitting}
+                  >
+                    Enter
+                  </Button>
+                </Stack>
+              </ModalFooter>
+            </Form>
+          )}
+        </Formik>
       </ModalContent>
     </Modal>
   );
+}
+
+function handleLogin(values, actions) {
+  setTimeout(() => {
+    alert(JSON.stringify(values, null, 2));
+    actions.setSubmitting(false);
+  }, 1000);
 }
 
 export default RsvpModal;
