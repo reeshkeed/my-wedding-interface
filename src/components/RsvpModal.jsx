@@ -15,15 +15,14 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 
-import { Formik, Form, Field } from "formik";
-
 import { useRef } from "react";
-
+import { Formik, Form, Field } from "formik";
 import { object, string } from "yup";
+import axios from "axios";
 
 const formSchema = object({
   username: string().required().label("Username"),
-  code: string().min(4).max(4).required().label("Code"),
+  password: string().min(4).max(4).required().label("Password"),
 });
 
 function RsvpModal(props) {
@@ -38,11 +37,11 @@ function RsvpModal(props) {
     >
       <ModalOverlay />
       <ModalContent mx={"1rem"} overflow={"hidden"}>
-        <ModalHeader bg={"gray.50"}>Enter Code</ModalHeader>
+        <ModalHeader bg={"gray.50"}>Login</ModalHeader>
         <ModalCloseButton />
 
         <Formik
-          initialValues={{ username: "", code: "" }}
+          initialValues={{ username: "", password: "" }}
           onSubmit={handleLogin}
           validationSchema={formSchema}
         >
@@ -50,7 +49,7 @@ function RsvpModal(props) {
             <Form>
               <ModalBody py={"1.5rem"}>
                 <Text mb={"1rem"}>
-                  Kindly enter the 4 digit code we just sent you.
+                  Kindly enter the 4 digit password we just sent you.
                 </Text>
 
                 <Stack direction={"column"} spacing={"3"}>
@@ -66,6 +65,7 @@ function RsvpModal(props) {
                           {...field}
                           id="username"
                           placeholder="Username"
+                          ref={initialRef}
                         />
                         <FormErrorMessage>
                           {form.errors.username}
@@ -74,14 +74,18 @@ function RsvpModal(props) {
                     )}
                   </Field>
 
-                  <Field name="code">
+                  <Field name="password">
                     {({ field, form }) => (
                       <FormControl
-                        isInvalid={form.errors.code && form.touched.code}
+                        isInvalid={
+                          form.errors.password && form.touched.password
+                        }
                       >
-                        <FormLabel htmlFor="code">Code</FormLabel>
-                        <Input {...field} id="code" placeholder="XXXX" />
-                        <FormErrorMessage>{form.errors.code}</FormErrorMessage>
+                        <FormLabel htmlFor="password">Password</FormLabel>
+                        <Input {...field} id="password" placeholder="XXXX" />
+                        <FormErrorMessage>
+                          {form.errors.password}
+                        </FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
@@ -112,10 +116,27 @@ function RsvpModal(props) {
 }
 
 function handleLogin(values, actions) {
-  setTimeout(() => {
-    alert(JSON.stringify(values, null, 2));
-    actions.setSubmitting(false);
-  }, 1000);
+  // setTimeout(() => {
+  //   alert(JSON.stringify(values, null, 2));
+  //   actions.setSubmitting(false);
+  // }, 1000);
+
+  // values.preventDefault();
+
+  axios
+    .post(`${process.env.REACT_APP_API_ENDPOINT}/login`, values)
+    .then((res) => {
+      setToken(res.data.token);
+
+      actions.setSubmitting(false);
+
+      window.location.reload();
+    });
+}
+
+function setToken(userToken) {
+  sessionStorage.setItem("token", JSON.stringify(userToken));
+  console.log(sessionStorage.getItem("token"));
 }
 
 export default RsvpModal;

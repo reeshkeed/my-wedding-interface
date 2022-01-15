@@ -1,21 +1,33 @@
-import Footer from './components/layout/Footer/Footer';
-import Navbar from './components/layout/Navbar';
-import Home from './pages/Home';
-import OurGallery from './pages/OurGallery';
-import WhenAndWhere from './pages/WhenAndWhere';
+import Footer from "./components/layout/Footer/Footer";
+import Navbar from "./components/layout/Navbar";
+import Home from "./pages/Home";
+import OurGallery from "./pages/OurGallery";
+import WhenAndWhere from "./pages/WhenAndWhere";
+import useToken from "./components/useToken";
 
 function App() {
-  return (
-    <div>
-      <Navbar />
+  const { token, setToken } = useToken();
 
-      <Home />
-      <WhenAndWhere />
-      <OurGallery />
+  if (!token) {
+    return (
+      <div>
+        <Navbar />
+        <Home />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Navbar />
 
-      <Footer />
-    </div>
-  );
+        <Home />
+        <WhenAndWhere />
+        <OurGallery />
+
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;
