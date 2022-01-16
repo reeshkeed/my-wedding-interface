@@ -1,33 +1,42 @@
-import Footer from "./components/layout/Footer/Footer";
-import Navbar from "./components/layout/Navbar";
-import Home from "./pages/Home";
-import OurGallery from "./pages/OurGallery";
-import WhenAndWhere from "./pages/WhenAndWhere";
-import useToken from "./components/useToken";
+import Footer from './components/layout/Footer/Footer';
+import Navbar from './components/layout/Navbar';
+import Home from './pages/Home';
+import OurGallery from './pages/OurGallery';
+import WhenAndWhere from './pages/WhenAndWhere';
+import TokenContext from './components/TokenContext';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const { token, setToken } = useToken();
+  const tokenState = useState(null);
+  const [token, setToken] = tokenState;
 
-  if (!token) {
-    return (
-      <div>
-        <Navbar />
-        <Home />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <Navbar />
+  useEffect(() => {
+    const userToken = sessionStorage.getItem('token');
+    if (userToken) {
+      setToken(userToken);
+    }
+  }, []);
 
-        <Home />
-        <WhenAndWhere />
-        <OurGallery />
+  return (
+    <TokenContext.Provider value={tokenState}>
+      {!token ? (
+        <div>
+          <Navbar />
+          <Home />
+        </div>
+      ) : (
+        <div>
+          <Navbar />
 
-        <Footer />
-      </div>
-    );
-  }
+          <Home />
+          <WhenAndWhere />
+          <OurGallery />
+
+          <Footer />
+        </div>
+      )}
+    </TokenContext.Provider>
+  );
 }
 
 export default App;

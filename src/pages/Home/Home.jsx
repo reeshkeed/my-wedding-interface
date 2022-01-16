@@ -44,24 +44,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// import { useState } from 'react';
-// function Home() {
-//   const [counter, setCounter] = useState(0);
-//   return (
-//     <div>
-//       <div>
-//         <span>{bar}</span>
-//         {counter % bar > 0 && <span>{bar ** counter}</span>}
-//         <span>{counter}</span>
-//       </div>
-//       <button onClick={() => setCounter((value) => value + 1)}>
-//         Click me!
-//       </button>
-//     </div>
-//   );
-// }
-
-// export default function App() {
-//   return <Foo bar={2} />;
-// }
