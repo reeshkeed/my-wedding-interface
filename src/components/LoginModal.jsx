@@ -13,17 +13,19 @@ import {
   Text,
   Stack,
   FormErrorMessage,
-} from '@chakra-ui/react';
+  Alert,
+  AlertIcon,
+} from "@chakra-ui/react";
 
-import { useRef, useContext } from 'react';
-import { Formik, Form, Field } from 'formik';
-import { object, string } from 'yup';
-import axios from 'axios';
-import TokenContext from './TokenContext';
+import { useRef, useContext, useState, useEffect } from "react";
+import { Formik, Form, Field } from "formik";
+import { object, string } from "yup";
+import axios from "axios";
+import TokenContext from "./TokenContext";
 
 const formSchema = object({
-  username: string().required().label('Username'),
-  password: string().min(4).max(4).required().label('Password'),
+  username: string().required().label("Username"),
+  password: string().min(4).max(4).required().label("Password"),
 });
 
 function LoginModal(props) {
@@ -31,14 +33,27 @@ function LoginModal(props) {
 
   const [, setToken] = useContext(TokenContext);
 
+  const [formError, setFormError] = useState(false);
+
+  useEffect(() => {
+    setFormError(false);
+  }, [props.isOpen]);
+
   const handleLogin = (values, actions) => {
+    setFormError(false);
+
     axios
       .post(`${process.env.REACT_APP_API_ENDPOINT}/login`, values)
       .then((res) => {
         setToken(res.data.token);
-        sessionStorage.setItem('token', res.data.token);
+        sessionStorage.setItem("token", res.data.token);
 
         props.onClose();
+        actions.setSubmitting(false);
+      })
+      .catch((error) => {
+        setFormError(error.response.data.error);
+
         actions.setSubmitting(false);
       });
   };
@@ -51,24 +66,36 @@ function LoginModal(props) {
       isCentered
     >
       <ModalOverlay />
-      <ModalContent mx={'1rem'} overflow={'hidden'}>
-        <ModalHeader bg={'gray.50'}>Login</ModalHeader>
+      <ModalContent mx={"1rem"} overflow={"hidden"}>
+        <ModalHeader bg={"gray.50"}>Login</ModalHeader>
         <ModalCloseButton />
 
         <Formik
-          initialValues={{ username: '', password: '' }}
+          initialValues={{ username: "", password: "" }}
           onSubmit={handleLogin}
           validationSchema={formSchema}
         >
           {(props) => (
             <Form>
-              <ModalBody py={'1.5rem'}>
-                <Text mb={'1rem'}>
+              <ModalBody py={"1.5rem"}>
+                {formError ? (
+                  <Alert
+                    status="error"
+                    color={"red"}
+                    mb={"1rem"}
+                    rounded={"md"}
+                  >
+                    <AlertIcon />
+                    {formError}
+                  </Alert>
+                ) : null}
+
+                <Text mb={"1rem"}>
                   Kindly enter the username and 4 digit password we just sent
                   you.
                 </Text>
 
-                <Stack direction={'column'} spacing={'3'}>
+                <Stack direction={"column"} spacing={"3"}>
                   <Field name="username">
                     {({ field, form }) => (
                       <FormControl
@@ -109,7 +136,7 @@ function LoginModal(props) {
               </ModalBody>
 
               <ModalFooter>
-                <Stack direction={'row'} spacing={'3'}>
+                <Stack direction={"row"} spacing={"3"}>
                   <Button variant="ghost" onClick={props.onClose}>
                     Close
                   </Button>
