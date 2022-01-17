@@ -9,12 +9,13 @@ import { NavbarTabletUp } from "./NavbarTabletUp";
 const NAVBAR_ITEMS = [
   { id: 0, name: "WHEN & WHERE", link: "when-and-where" },
   { id: 1, name: "OUR GALLERY", link: "our-gallery" },
+  { id: 3, name: "RSVP", link: "rsvp" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [token, setToken] = useContext(TokenContext);
+  const { token, setToken, setUserData } = useContext(TokenContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +28,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     setToken(null);
+    setUserData(null);
     sessionStorage.clear();
   };
 

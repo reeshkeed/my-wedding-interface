@@ -31,7 +31,7 @@ const formSchema = object({
 function LoginModal(props) {
   const initialRef = useRef();
 
-  const [, setToken] = useContext(TokenContext);
+  const { setToken, setUserData } = useContext(TokenContext);
 
   const [formError, setFormError] = useState(false);
 
@@ -48,12 +48,29 @@ function LoginModal(props) {
         setToken(res.data.token);
         sessionStorage.setItem("token", res.data.token);
 
+        getUserDetails(res.data.token, actions);
+      })
+      .catch((error) => {
+        setFormError(error.response.data.error);
+
+        actions.setSubmitting(false);
+      });
+  };
+
+  const getUserDetails = (token, actions) => {
+    axios
+      .get(`${process.env.REACT_APP_API_ENDPOINT}/guest`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setUserData(res.data.user);
+        sessionStorage.setItem("userData", JSON.stringify(res.data.user));
+
         props.onClose();
         actions.setSubmitting(false);
       })
       .catch((error) => {
         setFormError(error.response.data.error);
-
         actions.setSubmitting(false);
       });
   };

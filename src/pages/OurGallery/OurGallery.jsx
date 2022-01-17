@@ -1,31 +1,31 @@
-import { Center, Grid, GridItem, Image } from '@chakra-ui/react';
+import { Center, Grid, GridItem, Image } from "@chakra-ui/react";
 
-import Header from '../../components/Header';
+import Header from "../../components/Header";
 
 const GALLERY_ITEMS = [
-  { id: 0, path: require('../../assets/gallery/img1.png'), span: 3 },
-  { id: 1, path: require('../../assets/gallery/img1.png'), span: 2 },
-  { id: 2, path: require('../../assets/gallery/img1.png'), span: 1 },
-  { id: 3, path: require('../../assets/gallery/img1.png'), span: 2 },
-  { id: 4, path: require('../../assets/gallery/img1.png'), span: 3 },
-  { id: 5, path: require('../../assets/gallery/img1.png'), span: 2 },
-  { id: 6, path: require('../../assets/gallery/img1.png'), span: 2 },
-  { id: 7, path: require('../../assets/gallery/img1.png'), span: 3 },
+  { id: 0, path: require("../../assets/gallery/img1.png"), span: 3 },
+  { id: 1, path: require("../../assets/gallery/img1.png"), span: 2 },
+  { id: 2, path: require("../../assets/gallery/img1.png"), span: 1 },
+  { id: 3, path: require("../../assets/gallery/img1.png"), span: 2 },
+  { id: 4, path: require("../../assets/gallery/img1.png"), span: 3 },
+  { id: 5, path: require("../../assets/gallery/img1.png"), span: 2 },
+  { id: 6, path: require("../../assets/gallery/img1.png"), span: 2 },
+  { id: 7, path: require("../../assets/gallery/img1.png"), span: 3 },
 ];
 
-function OurGallery() {
+export default function OurGallery() {
   return (
     <Center id="our-gallery">
       <Grid
         templateRows="repeat(2, 1fr)"
         templateColumns="repeat(5, 1fr)"
-        width={'100%'}
+        width={"100%"}
         px={{
-          base: '1rem',
-          md: '2rem',
-          lg: '4rem',
-          xl: '6rem',
-          '2xl': '20rem',
+          base: "1rem",
+          md: "2rem",
+          lg: "4rem",
+          xl: "6rem",
+          "2xl": "20rem",
         }}
         my="5rem"
         gap={4}
@@ -37,9 +37,9 @@ function OurGallery() {
           return (
             <GridItem key={item.id} colSpan={item.span}>
               <Image
-                height={{ base: '10rem', md: '20rem', lg: '30rem' }}
+                height={{ base: "10rem", md: "20rem", lg: "30rem" }}
                 width="100%"
-                borderRadius="0.5rem"
+                borderRadius="md"
                 src={item.path}
                 objectFit="cover"
                 align="top"
@@ -51,5 +51,3 @@ function OurGallery() {
     </Center>
   );
 }
-
-export default OurGallery;
