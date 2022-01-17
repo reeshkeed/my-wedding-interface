@@ -30,9 +30,7 @@ const formSchema = object({
 
 function LoginModal(props) {
   const initialRef = useRef();
-
   const { setToken, setUserData } = useContext(TokenContext);
-
   const [formError, setFormError] = useState(false);
 
   useEffect(() => {
@@ -108,7 +106,7 @@ function LoginModal(props) {
                 ) : null}
 
                 <Text mb={"1rem"}>
-                  Kindly enter the username and 4 digit password we just sent
+                  Kindly enter the username and 4-character password we sent
                   you.
                 </Text>
 
@@ -142,7 +140,12 @@ function LoginModal(props) {
                         }
                       >
                         <FormLabel htmlFor="password">Password</FormLabel>
-                        <Input {...field} id="password" placeholder="XXXX" />
+                        <Input
+                          {...field}
+                          id="password"
+                          type={"password"}
+                          placeholder="****"
+                        />
                         <FormErrorMessage>
                           {form.errors.password}
                         </FormErrorMessage>

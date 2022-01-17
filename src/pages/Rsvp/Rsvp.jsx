@@ -90,7 +90,7 @@ export default function Rsvp() {
             </Text>
 
             <Text fontSize={{ base: "lg" }} as="i">
-              Due to Covid-19 restrictions and venue rules, guest count are
+              Due to COVID-19 restrictions and venue rules, guest count are
               limited in the location.
             </Text>
 

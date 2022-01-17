@@ -5,19 +5,83 @@ import {
   Button,
   Flex,
   Center,
+  useToast,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useContext, useEffect } from "react";
+import TokenContext from "../TokenContext";
 
 import "./RsvpForm.css";
 
 export default function RsvpForm() {
+  const [checkBoxState, setCheckboxState] = useState();
+  const [isSubmitting, setSubmitting] = useState(false);
+  const { token, userData } = useContext(TokenContext);
+  const toast = useToast();
+
+  console.log(checkBoxState);
+
   const handleCheckboxChange = (value) => {
     const lastElement = value[value.length - 1];
 
     setCheckboxState(lastElement);
   };
 
-  const [checkBoxState, setCheckboxState] = useState();
+  useEffect(() => {
+    if (userData && userData.response !== null) {
+      setCheckboxState(userData.response.toString());
+    }
+  }, [userData]);
+
+  const handleSubmitResponse = () => {
+    setSubmitting(true);
+
+    axios
+      .post(
+        `${process.env.REACT_APP_API_ENDPOINT}/guest/${userData.id}`,
+        {
+          response: parseInt(checkBoxState),
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((res) => {
+        const response = res.data.user.response;
+
+        sessionStorage.setItem("userData", JSON.stringify(res.data.user));
+
+        if (response === 0) {
+          showToast(
+            "Response Recieved",
+            "We thank you for your quick respone.",
+            "info"
+          );
+        } else if (response === 1) {
+          showToast(
+            "Response Recieved",
+            "We thank you for your quick respone. See you!",
+            "success"
+          );
+        }
+        setSubmitting(false);
+      })
+      .catch((error) => {
+        showToast(error.response.data.error, "Please login again.", "error");
+        setSubmitting(false);
+      });
+  };
+
+  const showToast = (title, description, status) => {
+    toast({
+      title: title,
+      description: description,
+      position: "top",
+      status: status,
+      duration: 3000,
+      isClosable: true,
+    });
+  };
 
   return (
     <Center
@@ -60,11 +124,18 @@ export default function RsvpForm() {
         </Text>
 
         <Flex direction={"column"}>
-          <Checkbox value="0">Accepts with pleasure!</Checkbox>
-          <Checkbox value="1" mt={"0.5rem"}>
-            Declines with regrets.
+          <Checkbox value="1">Accept with pleasure!</Checkbox>
+          <Checkbox value="0" mt={"0.5rem"}>
+            Decline with regrets.
           </Checkbox>
-          <Button colorScheme="yellow" variant="solid" mt={"1.5rem"}>
+          <Button
+            colorScheme="yellow"
+            variant="solid"
+            mt={"1.5rem"}
+            onClick={handleSubmitResponse}
+            isLoading={isSubmitting}
+            isDisabled={!checkBoxState}
+          >
             Send
           </Button>
         </Flex>
