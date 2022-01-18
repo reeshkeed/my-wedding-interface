@@ -77,7 +77,7 @@ export default function RsvpForm() {
       description: description,
       position: "top",
       status: status,
-      duration: 3000,
+      duration: 4000,
       isClosable: true,
     });
   };
@@ -122,8 +122,10 @@ export default function RsvpForm() {
         </Text>
 
         <Flex direction={"column"}>
-          <Checkbox value="1">Accept with pleasure!</Checkbox>
-          <Checkbox value="0" mt={"0.5rem"}>
+          <Checkbox value="1" isDisabled={checkBoxState == "1"}>
+            Accept with pleasure!
+          </Checkbox>
+          <Checkbox value="0" isDisabled={checkBoxState == "0"} mt={"0.5rem"}>
             Decline with regrets.
           </Checkbox>
           <Button

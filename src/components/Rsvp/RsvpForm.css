@@ -4,3 +4,15 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.chakra-checkbox__label[data-disabled] {
+  color: var(--chakra-colors-yellow-300) !important;
+  opacity: 1 !important;
+  cursor: pointer;
+}
+
+.chakra-checkbox__control[data-disabled] {
+  background-color: var(--chakra-colors-yellow-300) !important;
+  color: var(--chakra-colors-yellow-500) !important;
+  border-color: var(--chakra-colors-yellow-500) !important;
+}
