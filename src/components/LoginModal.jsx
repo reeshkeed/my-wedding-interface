@@ -122,7 +122,7 @@ function LoginModal(props) {
                         <Input
                           {...field}
                           id="username"
-                          placeholder="Username"
+                          placeholder="john.doe"
                           ref={initialRef}
                         />
                         <FormErrorMessage>

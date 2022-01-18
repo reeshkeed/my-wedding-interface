@@ -83,10 +83,10 @@ export default function Rsvp() {
             </Heading>
 
             <Text fontSize={{ base: "2xl", md: "3xl" }} mb={"1rem"}>
-              Hi, {userData ? userData.name : ""}!
+              Hi, {userData.name}!
               <br />
-              We have reserved {userData ? userData.seat_count : ""} seat(s) for
-              you.
+              We have reserved {userData.seat_count}&nbsp;
+              {userData.seat_count > 1 ? "seats" : "seat"} for you.
             </Text>
 
             <Text fontSize={{ base: "lg" }} as="i">
@@ -94,19 +94,21 @@ export default function Rsvp() {
               limited in the location.
             </Text>
 
-            <Box>
-              <Text mb={"0.5rem"}>
-                Only name(s) that is listed below can come with you:
-              </Text>
+            {userData.seat_count > 1 && (
+              <Box>
+                <Text mb={"0.5rem"}>
+                  Only names that are listed below can come with you:
+                </Text>
 
-              {userAccompanies.map((item) => {
-                return (
-                  <Text fontWeight={"600"} key={item}>
-                    {item}
-                  </Text>
-                );
-              })}
-            </Box>
+                {userAccompanies.map((item) => {
+                  return (
+                    <Text fontWeight={"600"} key={item}>
+                      {item}
+                    </Text>
+                  );
+                })}
+              </Box>
+            )}
           </Flex>
         </GridItem>
 

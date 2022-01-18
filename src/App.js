@@ -29,7 +29,7 @@ function App() {
 
   return (
     <TokenContext.Provider value={providerData}>
-      {!token ? (
+      {!userData ? (
         <div>
           <Navbar />
           <Home />

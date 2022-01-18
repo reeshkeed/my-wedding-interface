@@ -23,7 +23,6 @@ export default function RsvpForm() {
 
   const handleCheckboxChange = (value) => {
     const lastElement = value[value.length - 1];
-
     setCheckboxState(lastElement);
   };
 
@@ -110,7 +109,6 @@ export default function RsvpForm() {
 
       <CheckboxGroup
         colorScheme="yellow"
-        isNative
         onChange={handleCheckboxChange}
         value={checkBoxState}
       >
