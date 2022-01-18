@@ -1,9 +1,10 @@
-@import url('./assets/fonts/fonts.css');
+@import url("./assets/fonts/fonts.css");
 
 html,
 body {
-  font-family: 'Public Sans', sans-serif !important;
+  font-family: "Public Sans", sans-serif !important;
 }
+
 .d-flex {
   display: flex;
 }
@@ -22,12 +23,4 @@ body {
 
 .v-center {
   align-items: center;
-}
-
-.font-amalfi {
-  font-family: 'Amalfi Coast';
-}
-
-.font-cormorant {
-  font-family: 'Cormorant Garamond', serif;
 }

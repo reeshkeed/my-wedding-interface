@@ -52,7 +52,7 @@ export default function WhenAndWhere() {
 
           <Text color={"gray.500"}>
             Sunday, January 30, 2022 <br />
-            Four o'clock in the afternoon
+            Three o'clock in the afternoon
           </Text>
           <Text color={"gray.500"}>
             Mi Casita Private Pool Garden Resort <br />
