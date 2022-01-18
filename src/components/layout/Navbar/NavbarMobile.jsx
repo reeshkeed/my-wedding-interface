@@ -13,11 +13,14 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { Link } from "react-scroll";
+import { useContext } from "react";
 import logo from "../../../assets/logo.png";
 import { NavbarButton } from "./NavbarButton";
+import TokenContext from "../../TokenContext";
 
 export const NavbarMobile = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { userData } = useContext(TokenContext);
 
   return (
     <Container
@@ -56,15 +59,17 @@ export const NavbarMobile = (props) => {
                   HOME
                 </Link>
               </Box>
-              {props.navbarItems.map((item) => {
-                return (
-                  <Box pb={"0.4rem"} key={item.id}>
-                    <Link to={item.link} spy={true} smooth={true}>
-                      {item.name}
-                    </Link>
-                  </Box>
-                );
-              })}
+
+              {userData &&
+                props.navbarItems.map((item) => {
+                  return (
+                    <Box pb={"0.4rem"} key={item.id}>
+                      <Link to={item.link} spy={true} smooth={true}>
+                        {item.name}
+                      </Link>
+                    </Box>
+                  );
+                })}
             </Box>
           </DrawerBody>
         </DrawerContent>

@@ -1,9 +1,12 @@
 import { Box, Container, Image } from "@chakra-ui/react";
+import { useContext } from "react";
 import { Link } from "react-scroll";
 import logo from "../../../assets/logo.png";
 import { NavbarButton } from "./NavbarButton";
+import TokenContext from "../../TokenContext";
 
 export const NavbarTabletUp = (props) => {
+  const { userData } = useContext(TokenContext);
   return (
     <Container
       justifyContent={"space-between"}
@@ -21,19 +24,20 @@ export const NavbarTabletUp = (props) => {
           <Image className="logo" src={logo} />
         </Link>
 
-        {props.navbarItems.map((item) => {
-          return (
-            <Link
-              className="nav-link"
-              key={item.id}
-              to={item.link}
-              spy={true}
-              smooth={true}
-            >
-              {item.name}
-            </Link>
-          );
-        })}
+        {userData &&
+          props.navbarItems.map((item) => {
+            return (
+              <Link
+                className="nav-link"
+                key={item.id}
+                to={item.link}
+                spy={true}
+                smooth={true}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
       </Box>
 
       <NavbarButton
