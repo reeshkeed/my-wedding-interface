@@ -97,7 +97,7 @@ export default function Rsvp() {
             {userData.seat_count > 1 && (
               <Box>
                 <Text mb={"0.5rem"}>
-                  Only names that are listed below can come with you:
+                  Only names that are listed below can come to the venue:
                 </Text>
 
                 {userAccompanies.map((item) => {

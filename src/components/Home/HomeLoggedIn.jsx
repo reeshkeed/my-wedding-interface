@@ -3,7 +3,7 @@ import { Box, Center, Stack, Text } from "@chakra-ui/react";
 function HomeLoggedIn() {
   return (
     <Center display={"flex"} flexDirection={"column"} height={"100vh"}>
-      <Stack spacing={3} direction={"column"}>
+      <Stack spacing={2} direction={"column"}>
         <Text
           fontSize={{ base: "1rem", sm: "1.3rem", md: "1.4rem", xl: "1.6rem" }}
           fontWeight={400}
