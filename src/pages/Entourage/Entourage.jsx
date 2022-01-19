@@ -106,11 +106,11 @@ function Entourage() {
 
             <Stack spacing={4} direction={"column"} textAlign={"left"}>
               <Text>
+                Mr. Edwin Genodia
+                <br />
                 Mr. Jhan Madali
                 <br />
                 Mr. Danilo Consad
-                <br />
-                Mr. Edwin Genodia
               </Text>
 
               <Box>
