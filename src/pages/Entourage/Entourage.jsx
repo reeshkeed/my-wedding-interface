@@ -188,21 +188,21 @@ function Entourage() {
                 <Text fontWeight={"600"} color={TITLES_COLORS.subtitle}>
                   RING BEARER
                 </Text>
-                <Text>BIEMBO GAUM</Text>
+                <Text>Biembo Gaum</Text>
               </Box>
 
               <Box>
                 <Text fontWeight={"600"} color={TITLES_COLORS.subtitle}>
                   BIBLE BEARER
                 </Text>
-                <Text>ACE FORD GARCIA</Text>
+                <Text>Ace Ford Garcia</Text>
               </Box>
 
               <Box>
                 <Text fontWeight={"600"} color={TITLES_COLORS.subtitle}>
                   COIN BEARER
                 </Text>
-                <Text>CHLOE JUNIO</Text>
+                <Text>Chloe Junio</Text>
               </Box>
 
               <Box>
@@ -210,11 +210,11 @@ function Entourage() {
                   FLOWER GIRLS
                 </Text>
                 <Text>
-                  NINA ATHALIA TATAD
+                  Nina Athalia Tatad
                   <br />
-                  KYLIE LJ DELA CRUZ
+                  Kylie LJ Dela Cruz
                   <br />
-                  MARY JANE PENALES
+                  Mary Jane Penales
                 </Text>
               </Box>
             </Stack>
