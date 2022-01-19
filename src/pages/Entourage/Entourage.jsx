@@ -28,7 +28,7 @@ function Entourage() {
       <Stack
         spacing={10}
         direction={"column"}
-        fontWeight={"100"}
+        fontWeight={"300"}
         fontSize={{ base: "1rem", md: "1.2rem" }}
       >
         <Stack
