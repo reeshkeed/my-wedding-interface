@@ -3,14 +3,16 @@ import { Center, Grid, GridItem, Image } from "@chakra-ui/react";
 import Header from "../../components/Header";
 
 const GALLERY_ITEMS = [
-  { id: 0, path: require("../../assets/gallery/img1.png"), span: 3 },
-  { id: 1, path: require("../../assets/gallery/img1.png"), span: 2 },
-  { id: 2, path: require("../../assets/gallery/img1.png"), span: 1 },
-  { id: 3, path: require("../../assets/gallery/img1.png"), span: 2 },
-  { id: 4, path: require("../../assets/gallery/img1.png"), span: 3 },
-  { id: 5, path: require("../../assets/gallery/img1.png"), span: 2 },
-  { id: 6, path: require("../../assets/gallery/img1.png"), span: 2 },
-  { id: 7, path: require("../../assets/gallery/img1.png"), span: 3 },
+  { id: 0, path: require("../../assets/gallery/1.png"), span: 3 },
+  { id: 1, path: require("../../assets/gallery/2.png"), span: 2 },
+  { id: 2, path: require("../../assets/gallery/3.png"), span: 1 },
+  { id: 3, path: require("../../assets/gallery/4.png"), span: 2 },
+  { id: 4, path: require("../../assets/gallery/5.png"), span: 3 },
+  { id: 5, path: require("../../assets/gallery/6.png"), span: 2 },
+  { id: 6, path: require("../../assets/gallery/7.png"), span: 2 },
+  { id: 7, path: require("../../assets/gallery/8.png"), span: 3 },
+  { id: 8, path: require("../../assets/gallery/9.png"), span: 3 },
+  { id: 9, path: require("../../assets/gallery/10.png"), span: 2 },
 ];
 
 export default function OurGallery() {
@@ -42,7 +44,7 @@ export default function OurGallery() {
                 borderRadius="md"
                 src={item.path}
                 objectFit="cover"
-                align="top"
+                align="right"
               />
             </GridItem>
           );
