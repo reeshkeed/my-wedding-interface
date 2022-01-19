@@ -59,7 +59,7 @@ export default function SmallWithLogoLeft() {
             </Stack>
           </Stack>
         </Center>
-        <Text color={"gray.400"}>
+        <Text color={"gray.400"} fontSize={{ base: "0.8rem", md: "1rem" }}>
           &copy; 2022 Shane &amp; Girish. All rights reserved. Est 2016.
         </Text>
       </Container>
