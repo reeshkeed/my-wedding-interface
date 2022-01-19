@@ -8,7 +8,8 @@ import { NavbarTabletUp } from "./NavbarTabletUp";
 
 const NAVBAR_ITEMS = [
   { id: 0, name: "WHEN & WHERE", link: "when-and-where" },
-  { id: 1, name: "OUR GALLERY", link: "our-gallery" },
+  { id: 1, name: "ENTOURAGE", link: "entourage" },
+  { id: 2, name: "OUR GALLERY", link: "our-gallery" },
   { id: 3, name: "RSVP", link: "rsvp" },
 ];
 

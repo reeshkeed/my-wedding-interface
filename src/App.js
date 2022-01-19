@@ -1,8 +1,10 @@
-import Footer from "./components/layout/Footer/Footer";
 import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer/Footer";
+
 import Home from "./pages/Home";
-import OurGallery from "./pages/OurGallery";
 import WhenAndWhere from "./pages/WhenAndWhere";
+import Entourage from "./pages/Entourage";
+import OurGallery from "./pages/OurGallery";
 import Rsvp from "./pages/Rsvp";
 
 import TokenContext from "./components/TokenContext";
@@ -40,6 +42,7 @@ function App() {
 
           <Home />
           <WhenAndWhere />
+          <Entourage />
           <OurGallery />
           <Rsvp />
 

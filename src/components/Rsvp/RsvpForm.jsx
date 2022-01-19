@@ -19,8 +19,6 @@ export default function RsvpForm() {
   const { token, userData } = useContext(TokenContext);
   const toast = useToast();
 
-  console.log(checkBoxState);
-
   const handleCheckboxChange = (value) => {
     const lastElement = value[value.length - 1];
     setCheckboxState(lastElement);
@@ -122,10 +120,10 @@ export default function RsvpForm() {
         </Text>
 
         <Flex direction={"column"}>
-          <Checkbox value="1" isDisabled={checkBoxState == "1"}>
+          <Checkbox value="1" isDisabled={checkBoxState === "1"}>
             Accept with pleasure!
           </Checkbox>
-          <Checkbox value="0" isDisabled={checkBoxState == "0"} mt={"0.5rem"}>
+          <Checkbox value="0" isDisabled={checkBoxState === "0"} mt={"0.5rem"}>
             Decline with regrets.
           </Checkbox>
           <Button
