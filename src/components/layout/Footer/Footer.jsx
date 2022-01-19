@@ -13,7 +13,7 @@ import Logo from "../../../assets/logo.png";
 import "./Footer.css";
 
 const NAVBAR_ITEMS = [
-  { id: 0, name: "Home", link: "when-and-where" },
+  { id: 0, name: "Home", link: "home" },
   { id: 1, name: "When & Where", link: "when-and-where" },
   { id: 2, name: "Our Gallery", link: "our-gallery" },
 ];
